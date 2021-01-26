@@ -131,6 +131,12 @@ export function UsersList() {
                   </label>{" "}
                   {currentUser.address}
                 </div>
+                <div>
+                  <label>
+                    <strong>Número</strong>
+                  </label>{" "}
+                  {currentUser.addressNumber}
+                </div>
   
                 <Link
                   to={"/users/" + currentUser.id}

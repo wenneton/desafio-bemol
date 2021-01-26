@@ -5,7 +5,7 @@ export function User(props) {
     const [currentUser, setCurrentUser] = useState(null);
     const [message, setMessage] = useState('');
 
-    useEffect(() => getUser(props.match.params.id), []);
+    useEffect(() => getUser(props.match.params.id), [props]);
 
     const getUser = id => {
         UserDataService.get(id)
@@ -36,7 +36,7 @@ export function User(props) {
           )
             .then(response => {
               console.log(response.data);
-              setMessage('The tutorial was updated successfully!');
+              setMessage('O usuário foi alterado com sucesso!');
             })
             .catch(e => {
               console.log(e);
@@ -98,6 +98,19 @@ export function User(props) {
                     onChange={e => setCurrentUser({
                         ...currentUser,
                         address: e.target.value,
+                    })}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="name">Número</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="addressNumber"
+                    value={currentUser.addressNumber}
+                    onChange={e => setCurrentUser({
+                        ...currentUser,
+                        addressNumber: e.target.value,
                     })}
                   />
                 </div>

@@ -10,4 +10,5 @@ class UserSerializer(serializers.ModelSerializer):
                   'name',
                   'birthDate',
                   'address',
+                  'addressNumber',
                   'zipCode')

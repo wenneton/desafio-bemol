@@ -7,6 +7,7 @@ export function AddUser() {
     const [name, setName] = useState('');
     const [zipCode, setZipCode] = useState('');
     const [address, setAddress] = useState('');
+    const [addressNumber, setAddressNumber] = useState('');
     const [birthDate, setBirthDate] = useState('');
     
     const newUser = () => {
@@ -14,6 +15,7 @@ export function AddUser() {
         setName('');
         setZipCode('');
         setAddress('');
+        setAddressNumber('');
         setBirthDate('');
 
         setSubmitted(false);
@@ -24,6 +26,7 @@ export function AddUser() {
           name,
           zipCode,
           address,
+          addressNumber,
           birthDate
         };
     
@@ -33,6 +36,7 @@ export function AddUser() {
             setName(response.data.name);
             setZipCode(response.data.zipCode);
             setAddress(response.data.address);
+            setAddressNumber(response.data.addressNumber);
             setBirthDate(response.data.birthDate);
     
             setSubmitted(true);
@@ -48,9 +52,9 @@ export function AddUser() {
         <div className="submit-form">
           {submitted ? (
             <div>
-              <h4>You submitted successfully!</h4>
+              <h4>Usuário adicionado com sucesso!</h4>
               <button className="btn btn-success" onClick={newUser}>
-                Add
+                Adicionar novo
               </button>
             </div>
           ) : (
@@ -106,9 +110,22 @@ export function AddUser() {
                   name="address"
                 />
               </div>
+
+              <div className="form-group">
+                <label htmlFor="address">Número</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="addressNumber"
+                  required
+                  value={addressNumber}
+                  onChange={e => setAddressNumber(e.target.value)}
+                  name="addressNumber"
+                />
+              </div>
   
               <button onClick={saveUser} className="btn btn-success">
-                Submit
+                Enviar
               </button>
             </div>
           )}
