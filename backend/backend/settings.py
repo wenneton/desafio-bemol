@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     # Django REST framework
     'rest_framework',
     # Applications
-    'tutorials.apps.TutorialsConfig',
+    'user.apps.UserConfig',
     # CORS
     'corsheaders',
 ]
