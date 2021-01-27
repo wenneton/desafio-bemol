@@ -1,0 +1,24 @@
+1. A solução deve ser disponibilizada em Cloud ou On-premise?
+R: Em Cloud. Considerando a infraestrutura baseada em microsserviços, seria interessante
+ também ter uma arquitetura em container, como Docker ou algo do tipo.
+
+2. Considerando a participação de 4 pessoas técnicas para o desenvolvimento dessa
+solução, responda qual ferramenta acreditas ser apropriada para o controle de
+tarefas da equipe, a ferramenta é ágil?
+R: O ideal seria utilizar uma ferramenta na qual a maioria dos integrantes da equipe já 
+esteja mais familiarizado. No meu caso, já utilizei as issues do GitLab, KanbanX, Trello e atualmente 
+utilizo o Jira. Se tivesse que escolher dentre estas, escolheria o KanbanX, pois acho a interface
+ mais organizada e fácil de aprender.
+
+3. Você se sente capaz de liderar esta equipe? Por quê?
+Seria uma tarefa extremamente difícil, mas caso não houvesse alguém na equipe com mais experiência que 
+eu, com certeza. Acho que temos que experimentar coisas novas sempre, mesmo que seja fora da nossa zona
+de conforto. É claro que também pediria conselhos de amigos fora da equipe, para liderá-la da melhor maneira
+possível.
+
+4. Se pudesse sugerir uma melhoria, mudança ou oportunidade. O que seria?
+Por enquanto, nenhuma. Mas com o decorrer do projeto com certeza existiriam mudanças e melhorias a serem feitas.
+
+5. Acha válido esse desafio para o processo que está participando?
+Acredito que sim. Consegui desempenhar algumas tarefas que aprendi durante os anos que tenho como desenvolvedor. 
+Embora o tempo não tenha ajudado muito, acho que consegui demonstrar de forma sucinta os meus conhecimentos.
