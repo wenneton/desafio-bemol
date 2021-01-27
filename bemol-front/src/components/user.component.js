@@ -4,6 +4,7 @@ import UserDataService from '../services/user.service';
 export function User(props) {
     const [currentUser, setCurrentUser] = useState(null);
     const [message, setMessage] = useState('');
+    const [invalidZipCode, setInvalidZipCode] = useState(false);
 
     useEffect(() => getUser(props.match.params.id), [props]);
 
@@ -43,6 +44,24 @@ export function User(props) {
             });
     }
 
+    const searchZipCode = e => {
+        e.preventDefault();
+        UserDataService.getAddress(currentUser.zipCode)
+            .then(response => {
+                setCurrentUser({
+                    ...currentUser,
+                    address: response.data.logradouro + ', ' +
+                    response.data.bairro + ', ' +
+                    response.data.localidade
+                });
+                setInvalidZipCode(false);
+            })
+            .catch(err => {
+                console.log(err);
+                setInvalidZipCode(true);
+            } )
+    }
+
     return (
         <div>
           {currentUser ? (
@@ -76,17 +95,23 @@ export function User(props) {
                   />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="name">CEP</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="zipCode"
-                    value={currentUser.zipCode}
-                    onChange={e => setCurrentUser({
-                        ...currentUser,
-                        zipCode: e.target.value,
-                    })}
-                  />
+                    <label htmlFor="name">CEP</label>
+                    <div>
+                        <input
+                            type="text"
+                            className="form-control"
+                            id="zipCode"
+                            value={currentUser.zipCode}
+                            onChange={e => setCurrentUser({
+                                ...currentUser,
+                                zipCode: e.target.value,
+                            })}
+                        />
+                    </div>
+                    <button onClick={searchZipCode} className="btn btn-primary mt-1">
+                        Pesquisar CEP
+                    </button>
+                    {invalidZipCode ? <p className="alert alert-danger mt-1"> Cep Inválido</p> : ''}
                 </div>
                 <div className="form-group">
                   <label htmlFor="name">Endereço</label>
@@ -95,6 +120,7 @@ export function User(props) {
                     className="form-control"
                     id="address"
                     value={currentUser.address}
+                    disabled
                     onChange={e => setCurrentUser({
                         ...currentUser,
                         address: e.target.value,

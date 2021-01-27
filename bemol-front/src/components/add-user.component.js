@@ -3,7 +3,6 @@ import UserDataService from '../services/user.service';
 
 export function AddUser() {
     const [submitted, setSubmitted] = useState(false);
-    const [id, setId] = useState(null);
     const [name, setName] = useState('');
     const [zipCode, setZipCode] = useState('');
     const [invalidZipCode, setInvalidZipCode] = useState(false);
@@ -12,7 +11,6 @@ export function AddUser() {
     const [birthDate, setBirthDate] = useState('');
     
     const newUser = () => {
-        setId(null);
         setName('');
         setZipCode('');
         setAddress('');
@@ -33,7 +31,6 @@ export function AddUser() {
     
         UserDataService.create(data)
           .then(response => {
-            setId(response.data.id,);
             setName(response.data.name);
             setZipCode(response.data.zipCode);
             setAddress(response.data.address);
@@ -48,7 +45,7 @@ export function AddUser() {
           });
       }
 
-    const searchZipCode = e => {
+    const searchZipCode = () => {
         UserDataService.getAddress(zipCode)
             .then(response => {
                 setAddress(response.data.logradouro + ', ' +
@@ -112,8 +109,6 @@ export function AddUser() {
                     onChange={e => setZipCode(e.target.value)}
                     name="zipCode"
                     />
-                </div>
-                <div>
                 </div>
                 <button onClick={searchZipCode} className="btn btn-primary mt-1">
                 Pesquisar CEP
