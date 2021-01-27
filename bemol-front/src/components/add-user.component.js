@@ -6,6 +6,7 @@ export function AddUser() {
     const [id, setId] = useState(null);
     const [name, setName] = useState('');
     const [zipCode, setZipCode] = useState('');
+    const [invalidZipCode, setInvalidZipCode] = useState(false);
     const [address, setAddress] = useState('');
     const [addressNumber, setAddressNumber] = useState('');
     const [birthDate, setBirthDate] = useState('');
@@ -46,6 +47,20 @@ export function AddUser() {
             console.log(e);
           });
       }
+
+    const searchZipCode = e => {
+        UserDataService.getAddress(zipCode)
+            .then(response => {
+                setAddress(response.data.logradouro + ', ' +
+                    response.data.bairro + ', ' +
+                    response.data.localidade);
+                setInvalidZipCode(false);
+            })
+            .catch(err => {
+                console.log(err);
+                setInvalidZipCode(true);
+            } )
+    }
     
 
     return (
@@ -58,7 +73,7 @@ export function AddUser() {
               </button>
             </div>
           ) : (
-            <div>
+            <div className="container">
               <div className="form-group">
                 <label htmlFor="name">Nome</label>
                 <input
@@ -84,18 +99,26 @@ export function AddUser() {
                   name="birthDate"
                 />
               </div>
-  
+
               <div className="form-group">
                 <label htmlFor="zipCode">CEP</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="zipCode"
-                  required
-                  value={zipCode}
-                  onChange={e => setZipCode(e.target.value)}
-                  name="zipCode"
-                />
+                <div>
+                    <input
+                    type="text"
+                    className="form-control"
+                    id="zipCode"
+                    required
+                    value={zipCode}
+                    onChange={e => setZipCode(e.target.value)}
+                    name="zipCode"
+                    />
+                </div>
+                <div>
+                </div>
+                <button onClick={searchZipCode} className="btn btn-primary mt-1">
+                Pesquisar CEP
+                </button>
+                {invalidZipCode ? <p className="alert alert-danger mt-1"> Cep Inválido</p> : ''}
               </div>
 
               <div className="form-group">
@@ -105,6 +128,7 @@ export function AddUser() {
                   className="form-control"
                   id="address"
                   required
+                  disabled
                   value={address}
                   onChange={e => setAddress(e.target.value)}
                   name="address"
@@ -123,10 +147,12 @@ export function AddUser() {
                   name="addressNumber"
                 />
               </div>
-  
+            
+            <div className="">
               <button onClick={saveUser} className="btn btn-success">
                 Enviar
               </button>
+            </div>
             </div>
           )}
         </div>

@@ -1,5 +1,7 @@
 import http from "../http-common";
 
+import axios from "axios";
+
 class UserDataService {
   getAll() {
     return http.get("/users");
@@ -27,6 +29,10 @@ class UserDataService {
 
   findByName(name) {
     return http.get(`/users?name=${name}`);
+  }
+
+  getAddress(zipCode) {
+    return axios.get(`https://viacep.com.br/ws/${zipCode}/json/`)
   }
 }
 
